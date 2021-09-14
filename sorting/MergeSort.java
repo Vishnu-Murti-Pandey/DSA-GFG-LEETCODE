@@ -1,15 +1,14 @@
-package sde_sheet_180;
-import java.util.*;
+package sorting;
 
-public class CountInversionsInAnArray {
-	
-	static int count = 0;
+import java.util.Scanner;
+
+public class MergeSort {
 
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
-		long arr[] = new long[n];
+		int arr[] = new int[n];
 		for(int i=0; i<n; i++) {
 			arr[i] = sc.nextInt();
 		}
@@ -17,36 +16,36 @@ public class CountInversionsInAnArray {
 		int low = 0;
         int high = n-1;
         
-        count = 0;
+        int ans[] = mergeSort(arr, low, high);
         
-        long ans[] = mergeSort(arr, low, high);
-        
-        System.out.println(count);
-        
-	}
+        for(int i=0; i<ans.length; i++) {
+            System.out.print(ans[i]+" ");
+        }
 
-	static long[] mergeSort(long[] arr, int low, int high) {
+	}
+	
+	static int[] mergeSort(int[] arr, int low, int high) {
 		
 		if(low == high) {
-			long ba[] = new long[1];
+			int ba[] = new int[1];
 			ba[0] = arr[low];
 			return ba;
 		}
 		
 		int mid = (low+high)/2;
         
-        long lsa[] = mergeSort(arr, low, mid);
-        long rsa[] = mergeSort(arr, mid+1, high);
+        int lsa[] = mergeSort(arr, low, mid);
+        int rsa[] = mergeSort(arr, mid+1, high);
         
-        long merged[] = merge(lsa, rsa);
+        int merged[] = merge(lsa, rsa);
         
         return merged;
 		
     }
 	
-	static long[] merge(long a[], long b[]) {
+	static int[] merge(int a[], int b[]) {
 		
-		long temp[] = new long[a.length+b.length];
+		int temp[] = new int[a.length+b.length];
 		
         int i = 0;
         int j = 0;
@@ -59,7 +58,6 @@ public class CountInversionsInAnArray {
                 i++;
             }
             else {
-                count = count + (a.length-i);
                 temp[k] = b[j];
                 k++;
                 j++;
@@ -80,21 +78,6 @@ public class CountInversionsInAnArray {
         
         return temp;
     }
-
-//	private static void bruteForce(long[] arr, int n) {
-//		int count = 0;
-//		
-//		for(int i=0; i<n-1; i++) {
-//			for(int j=i+1; j<n; j++) {
-//				if(arr[i]>arr[j]) {
-//					count++;
-//				}
-//			}
-//		}
-//		
-//		System.out.println(count);
-//	}
-	
 	
 
 }
