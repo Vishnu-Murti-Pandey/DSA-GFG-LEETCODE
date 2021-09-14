@@ -22,6 +22,9 @@ public class SearchIn2DMatrix2 {
         
         // best optimal solution
         
+        // start from last column of first row
+        // if current element is greater than target element move left and if current element is smaller then move down.
+        
         while(i<=n-1 && j>=0) {
             if(mat[i][j] == tar) {
                 System.out.println(true);    
